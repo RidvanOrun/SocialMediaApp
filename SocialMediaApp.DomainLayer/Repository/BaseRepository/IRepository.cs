@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace SocialMediaApp.DomainLayer.Repository.BaseRepository
 {
+    //Repository temel olarak veritabanı sorgulama işlemlerinin bir merkezden yapılmasını sağlayarak iş katmanına bu işlerin taşınmasını önler bu şekilde sorgu ve kod tekrarına engel olmuş olur.
     public interface IRepository<T> where T:class, IBaseEntity // ???
     {
         Task<List<T>> GetAll(); // Herşeyi getir.

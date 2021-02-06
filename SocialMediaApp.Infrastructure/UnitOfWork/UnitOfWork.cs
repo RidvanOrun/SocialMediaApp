@@ -10,25 +10,29 @@ using System.Threading.Tasks;
 
 namespace SocialMediaApp.Infrastructure.Repository.UnitOfWork
 {
-    public class UnitOfWork:IUnitOfWork
+    //unitOfWork u kullanma amacımız neydi; bankamatik örneğindeki gibi her seferinde db ye gönderip işlem yapmasını önlemek ve en son onaydan sonra db ile bağlantı kurmak. Burada da Repositorylerin bağlantısını tek elden yürütmek amacıyla UnitOfWork kullanılıyor. 
+    public class UnitOfWork:IUnitOfWork //unit of work u implement ettik. 
     {
         private readonly ApplicationDbContext _applicationDbContext;
 
-        public UnitOfWork(ApplicationDbContext applicationDbContext) => this._applicationDbContext = applicationDbContext ?? throw new ArgumentNullException("database can not be null");
-        //?? karar mekanizması else benzeri db dönsün yada cümlecik fırlatsın
+        public UnitOfWork(ApplicationDbContext applicationDbContext)
+        {
+            this._applicationDbContext = applicationDbContext ?? throw new ArgumentNullException("database can not be null");
+            //ctor injection yönetminde hata çıkarsa. ?? karar mekanizması else benzeri db dönsün yada cümlecik fırlatsın
+        }
 
         private IAppUserRepository _appUserRepository;
         public IAppUserRepository AppUserRepository
         {
-            get { return _appUserRepository ?? (_appUserRepository = new AppUserRepository(_applicationDbContext)); }
+            //get { return _appUserRepository ?? (_appUserRepository = new AppUserRepository(_applicationDbContext)); }
 
-            //singleton
-            //get
-            //{
-            //    if (_appUserRepository == null) _appUserRepository = new AppUserRepository(_applicationDbContext);
-            //    return _appUserRepository;
+            get
+            {
+                if (_appUserRepository == null) _appUserRepository = new AppUserRepository(_applicationDbContext);
+                return _appUserRepository; 
+            }
 
-            //} 
+
         }
 
         private IFollowRepository _followRepository;
