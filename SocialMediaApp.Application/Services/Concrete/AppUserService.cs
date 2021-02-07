@@ -65,8 +65,19 @@ namespace SocialMediaApp.Application.Services.Concrete
                         //await _userManager.UpdateAsync(user);
                     }
                 }
-               
+                if (editProfileDTO.Email!= null)
+                {
+                    var isEmailExist = _userManager.FindByEmailAsync(editProfileDTO.Email);
+                    if (isEmailExist == null) await _userManager.SetEmailAsync(user, editProfileDTO.Email);
+                }
 
+                if (editProfileDTO.Name!=null)
+                {
+                    //var isNameExsist = _unitOfWork.AppUserRepository.FirstOrDefault(x => x.Name == editProfileDTO.Name);
+                    user.Name = editProfileDTO.Name;
+                }
+                _unitOfWork.AppUserRepository.Update(user);
+                await _unitOfWork.Commit();  
             }
 
         }
