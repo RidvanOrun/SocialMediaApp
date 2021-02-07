@@ -1,4 +1,5 @@
-# Domain-Driven-Design/DDD =>[*RidvanOrun/GitBook/DDD*](https://ridvanorun.gitbook.io/ddd/)
+# Domain-Driven-Design/DDD
+    =>[*RidvanOrun/GitBook/DDD*](https://ridvanorun.gitbook.io/ddd/)
 
 ![Image of DDD](https://gblobscdn.gitbook.com/assets%2F-MRpQvkt_cZoERWOLez2%2F-MSyEepRHHQsQZHVovex%2F-MSyEm2U6nsFqGC4WKc7%2FDDDGithup.png?alt=media&token=5738b2b4-0fc0-430d-8b16-f30cdaa73182)
  
