@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 using SocialMediaApp.Application.Model.DTOs;
@@ -20,13 +21,15 @@ namespace SocialMediaApp.Application.Services.Concrete
         private readonly IMapper _mapper;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _singInManager;
+        private readonly IFollowService _followService;
 
-        public AppUserService(UnitOfWork unitOfWork, IMapper mapper, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public AppUserService(UnitOfWork unitOfWork, IMapper mapper, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IFollowService followService)
         {
             this._unitOfWork = unitOfWork;
             this._mapper = mapper;
             this._userManager = userManager;
             this._singInManager = signInManager;
+            this._followService = followService;
             
         }
 
@@ -82,39 +85,80 @@ namespace SocialMediaApp.Application.Services.Concrete
 
         }
 
-        public Task<EditProfileDTO> GetById(int Id)
+        public async Task<EditProfileDTO> GetById(int Id) // dışarıdan gelen ıd den userın bilgilerini EditProfileDTO standartlarına göre getir. 
         {
-            throw new NotImplementedException();
+            AppUser user = await _unitOfWork.AppUserRepository.GetById(Id);
+            return _mapper.Map<EditProfileDTO>(user);
         }
 
-        public Task<ProfileSummaryDTO> GetByUserName(string userName)
+        public async Task<ProfileSummaryDTO> GetByUserName(string userName) //dışarıdan gelen username e göre userın bilgilerini profilesummary dtoya göre getir.
         {
-            throw new NotImplementedException();
+            //selector kendisine verilen repository'e göre verdiğimiz DTOyu ne ile eşleştirecğini anlar.
+            //aşağıda çıkan sonuç selectorun üstüne gelindiğinde görülecektir. appUSer,ProfileSummaryTO
+
+            //expresion dışarıdan gelen verinin bool tüipinde kontrolünü sağlar.
+            var user = await _unitOfWork.AppUserRepository.GetFilteredFirstOrDefault(
+                selector: x => new ProfileSummaryDTO
+                {
+                    UserName = x.UserName,
+                    Name = x.Name,
+                    ImagePath = x.ImagePath,
+                    TweetCount = x.Tweets.Count,
+                    FollowerCount = x.Followers.Count,
+                    FollowingCount = x.Followings.Count,
+
+                },
+                expression: x => x.UserName == userName);
+
+            return user;
         }
 
-        public Task<int> GetUserIdFromName(string name)
+        public async Task<int> GetUserIdFromName(string name)
         {
-            throw new NotImplementedException();
+            var user = await _unitOfWork.AppUserRepository.GetFilteredFirstOrDefault(
+                selector: x => x.Id,
+                expression: x => x.Name == name
+                );
+            return user;
         }
 
-        public Task<SignInResult> LogIn(LoginDTO loginDTO)
+        public async Task<SignInResult> LogIn(LoginDTO loginDTO)
         {
-            throw new NotImplementedException();
+            var result = await _singInManager.PasswordSignInAsync(loginDTO.UserName, loginDTO.Password, false, false);
+            return result;
         }
 
-        public Task LogOut()
+        public async Task LogOut()
         {
-            throw new NotImplementedException();
+            await _singInManager.SignOutAsync();
         }
 
-        public Task<IdentityResult> Register(RegisterDTO registerDTO)
+        public async Task<IdentityResult> Register(RegisterDTO registerDTO)
         {
-            throw new NotImplementedException();
+            var user = _mapper.Map<AppUser>(registerDTO);
+            var result = await _userManager.CreateAsync(user, registerDTO.Password);
+
+            if (result.Succeeded) await _singInManager.SignInAsync(user, isPersistent: false);
+            return result;
         }
 
-        public Task<List<FollowListVM>> UsersFollowers(int id, int pageIndex)
+        public async Task<List<FollowListVM>> UsersFollowers(int id, int pageIndex)
         {
-            throw new NotImplementedException();
+            List<int> followers = await _followService.Followers(id);
+
+            var followersList = await _unitOfWork.AppUserRepository.GetFilteredList(
+                selector: x => new FollowListVM
+                {
+                    Id = x.Id,
+                    ImagePath = x.ImagePath,
+                    UserName = x.UserName,
+                    Name = x.Name
+                },
+                expression: x => followers.Contains(x.Id),
+                include: x => x.Include(x => x.Followers),
+                pageIndex: pageIndex);
+               
+            return followersList;
         }
 
         public Task<List<FollowListVM>> UsersFollowings(int id, int pageIndex)
