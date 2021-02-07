@@ -1,3 +1,3 @@
 
-1.Open Blank Solution as name SocialMediaApp
+1.Open "Blank Solution" which is name SocialMediaApp.
 2. 
