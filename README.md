@@ -1,6 +1,6 @@
 # SocialMediaApp
 
-Bu proje Domain-Driven-Design/DDD temel alınarak yapılmştır. DDD dokumantasyonuma ulaşmak için Gitbook sayfamı ziyaret edebilirsiniz.  =>[*RidvanOrun/GitBook/DDD*](https://ridvanorun.gitbook.io/ddd/)
+Bu proje "Domain-Driven-Design/DDD" temel alınarak yapılmştır. Proje içerisinde kullanılan teknolojiler ile ilgili açıklamalara projemin readme'sinden ulaşabilirisiniz ayrıca DDD dokumantasyonuma ulaşmak için Gitbook sayfamı ziyaret edebilirsiniz.  =>[*RidvanOrun/GitBook/DDD*](https://ridvanorun.gitbook.io/ddd/) 
 
 # Domain-Driven-Design/DDD
 
