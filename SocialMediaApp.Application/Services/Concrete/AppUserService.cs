@@ -93,10 +93,10 @@ namespace SocialMediaApp.Application.Services.Concrete
 
         public async Task<ProfileSummaryDTO> GetByUserName(string userName) //dışarıdan gelen username e göre userın bilgilerini profilesummary dtoya göre getir.
         {
-            //selector kendisine verilen repository'e göre verdiğimiz DTOyu ne ile eşleştirecğini anlar.
+            //selector kendisine verilen repository'e göre verdiğimiz DTOyu ne ile eşleştireceğini anlar.
             //aşağıda çıkan sonuç selectorun üstüne gelindiğinde görülecektir. appUSer,ProfileSummaryTO
 
-            //expresion dışarıdan gelen verinin bool tüipinde kontrolünü sağlar.
+            //expresion dışarıdan gelen verinin bool tipinde kontrolünü sağlar.
             var user = await _unitOfWork.AppUserRepository.GetFilteredFirstOrDefault(
                 selector: x => new ProfileSummaryDTO
                 {
