@@ -7,7 +7,7 @@ using System.Text;
 
 namespace SocialMediaApp.Application.Mapper
 {
-    public class Mapping:Profile
+    public class Mapping : Profile
     {
         public Mapping()
         {
@@ -16,12 +16,13 @@ namespace SocialMediaApp.Application.Mapper
             CreateMap<AppUser, EditProfileDTO>().ReverseMap();
             CreateMap<AppUser, ProfileSummaryDTO>().ReverseMap();
 
+
             CreateMap<Follow, FollowDTO>().ReverseMap();
             CreateMap<Like, LikeDTO>().ReverseMap();
 
+
             CreateMap<Mention, AddMentionDTO>().ReverseMap();
+
         }
-
-
     }
 }

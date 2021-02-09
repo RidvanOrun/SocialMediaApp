@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SocialMediaApp.DomainLayer.Entities.Concrete;
+using SocialMediaApp.Infrastructure.Mapping.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;

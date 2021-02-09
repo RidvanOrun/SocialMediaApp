@@ -34,7 +34,7 @@ namespace SocialMediaApp.Application.Services.Concrete
         }
 
         //??????????????
-        //params object[], değişken türü belli olmayan durumlarda her eş object türünden türetilir.
+        // params object[], değişken türü belli olmayan durumlarda her eş object türünden türetilir.
         // parametres: dışardan gelen kullanıcı bilgileri. Bu kullanıcı bilgilerinide şu şekilde elde ediyor düşündüğüm zaman kullanıcıları listelediğimde bilgileri yazılı oluyor ıd, adsoyad status vs bunlar parametrs bilgileri oluyor ve bu bilgileri siliyor. 
 
         //spDeleteUsers yerine stored procedur yazılacak. 
@@ -161,9 +161,23 @@ namespace SocialMediaApp.Application.Services.Concrete
             return followersList;
         }
 
-        public Task<List<FollowListVM>> UsersFollowings(int id, int pageIndex)
+        public async Task<List<FollowListVM>> UsersFollowings(int id, int pageIndex)
         {
-            throw new NotImplementedException();
+            List<int> followings = await _followService.Followings(id);
+
+            var followingsList = await _unitOfWork.AppUserRepository.GetFilteredList(
+                selector: x => new FollowListVM
+                {
+                    Id = x.Id,
+                    ImagePath = x.ImagePath,
+                    UserName = x.UserName,
+                    Name = x.Name
+                },
+                expression: x => followings.Contains(x.Id),
+                include: x => x.Include(x => x.Followings),
+                pageIndex: pageIndex
+                );
+            return followingsList;
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SocialMediaApp.Application.Model.VM
 {
-    public class TimeLine
+    public class TimeLineVM
     {
         public int Id { get; set; }
         public string Text { get; set; }

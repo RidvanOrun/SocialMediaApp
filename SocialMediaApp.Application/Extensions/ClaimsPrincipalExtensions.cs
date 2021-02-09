@@ -5,6 +5,7 @@ using System.Text;
 
 namespace SocialMediaApp.Application.Extensions
 {
+    //??????????
     public static class ClaimsPrincipalExtensions
     {
         public static string GetUserEmail(this ClaimsPrincipal principal) => principal.FindFirstValue(ClaimTypes.Email);
@@ -16,7 +17,7 @@ namespace SocialMediaApp.Application.Extensions
         public static bool IsCurrentUser(this ClaimsPrincipal principal, string id)
         {
             var currentUserId = GetUserId(principal).ToString();
-            return string.Equals(currentUserId, id);       
+            return string.Equals(currentUserId, id);      
         
         }
 
