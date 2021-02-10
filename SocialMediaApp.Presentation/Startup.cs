@@ -26,14 +26,13 @@ namespace SocialMediaApp.Presentation
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //???
             services.AddHttpClient();
             services.AddMemoryCache();
             services.AddSession();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllersWithViews().AddFluentValidation();
-            //services.AddAutoMapper(typeof(Mapping));
+            services.AddAutoMapper(typeof(Mapping));
 
             //"AddIdentity" sýnýfý için Microsoft.AspNetCore.Identity paketi indirilir.
             services.AddIdentity<AppUser, AppRole>(x => {
@@ -72,9 +71,10 @@ namespace SocialMediaApp.Presentation
 
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapControllerRoute(
-                //    name: "profile",
-                //    pattern: "{profile}/{userName}");
+                endpoints.MapControllerRoute(
+                name: "profile",
+                pattern: "{profile}/{userName}",
+                defaults: new { controller = "Profile", action = "Detail" });
 
                 endpoints.MapControllerRoute(
                     name: "default",
@@ -83,3 +83,4 @@ namespace SocialMediaApp.Presentation
         }
     }
 }
+

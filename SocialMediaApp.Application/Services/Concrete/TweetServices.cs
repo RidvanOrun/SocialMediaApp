@@ -56,7 +56,7 @@ namespace SocialMediaApp.Application.Services.Concrete
         {
             var tweet = await _unitOfWork.TweetRepository.FirstOrDefault(x => x.Id == id);
 
-            if (userId == tweet.AppUserId) ///?????
+            if (userId == tweet.AppUserId)
             {
                 _unitOfWork.TweetRepository.Delete(tweet);
                 await _unitOfWork.Commit();

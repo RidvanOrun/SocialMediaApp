@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SocialMediaApp.DomainLayer.Entities.Concrete;
 using SocialMediaApp.Infrastructure.Mapping.Abstract;
 using System;
@@ -15,9 +16,9 @@ namespace SocialMediaApp.Infrastructure.Mapping.Concrete
             builder.Property(x => x.Text).HasMaxLength(256).IsRequired(true);
             builder.Property(x => x.ImagePath).IsRequired(false);
 
-            builder.HasMany(x => x.Mentions).WithOne(x => x.Tweet).HasForeignKey(x => x.TweetId);
-            builder.HasMany(x => x.Likes).WithOne(x => x.Tweet).HasForeignKey(x => x.TweetId);
-            builder.HasMany(x => x.Shares).WithOne(x => x.Tweet).HasForeignKey(x => x.TweetId);
+            builder.HasMany(x => x.Mentions).WithOne(x => x.Tweet).HasForeignKey(x => x.TweetId).OnDelete(DeleteBehavior.Restrict);
+            builder.HasMany(x => x.Likes).WithOne(x => x.Tweet).HasForeignKey(x => x.TweetId).OnDelete(DeleteBehavior.Restrict);
+            builder.HasMany(x => x.Shares).WithOne(x => x.Tweet).HasForeignKey(x => x.TweetId).OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(x => x.AppUser).WithMany(x => x.Tweets).HasForeignKey(x => x.AppUserId);
 

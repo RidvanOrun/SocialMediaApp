@@ -33,7 +33,7 @@ namespace SocialMediaApp.Application.Services.Concrete
             
         }
 
-        //??????????????
+        
         // params object[], değişken türü belli olmayan durumlarda her eş object türünden türetilir.
         // parametres: dışardan gelen kullanıcı bilgileri. Bu kullanıcı bilgilerinide şu şekilde elde ediyor düşündüğüm zaman kullanıcıları listelediğimde bilgileri yazılı oluyor ıd, adsoyad status vs bunlar parametrs bilgileri oluyor ve bu bilgileri siliyor. 
 

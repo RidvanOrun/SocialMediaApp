@@ -11,19 +11,25 @@
         <h3 class="card-title">@Model.Name</h3>
         <h3 class="card-title">@Model.UserName</h3>
 
-        @if (SignInManager.IsSignedIn(User) && User.Identity.Name != Model.UserName)
+        @if (SignInManager.IsSignedIn(User) && User.Identity.Name != @Model.UserName)
         {
             @await Component.InvokeAsync("FollowUser", new { UserName = @Model.UserName })
         }
-        else if (SignInManager.IsSignedIn(User) && User.Identity.Name == Model.UserName)
+        else if (SignInManager.IsSignedIn(User) && User.Identity.Name == @Model.UserName)
         {
             <a asp-controller="Account" asp-action="EditProfile" asp-route-username="@User.Identity.Name">Settings</a>
         }
 
         <ul>
-            <li>@Model.TweetCount Tweets</li>
-            <li>@Model.FollowerCount</li>
-            <li>@Model.FollowingCount</li>
-        </ul>
+            <li>@Model.TweetCount-Tweets</li>
+            <li>
+                @Model.FollowerCount-Followers
+                <a asp-controller="Profile" asp-action="Followers" asp-route-username="@Model.UserName">Followers</a>
+            </li>
+            <li>
+                @Model.FollowingCount-Following
+                <a asp-controller="Profile" asp-action="Followings" asp-route-username="@Model.UserName">Following</a>
+            </li>
+        </ul>  
     </div>
 </div>

@@ -8,12 +8,12 @@ using SocialMediaApp.Application.Mapper;
 using SocialMediaApp.Application.Model.DTOs;
 using SocialMediaApp.Application.Services.Concrete;
 using SocialMediaApp.Application.Services.Interface;
+using SocialMediaApp.Application.Services.Validation;
 using SocialMediaApp.Application.Validation;
 using SocialMediaApp.DomainLayer.Entities.Concrete;
 using SocialMediaApp.DomainLayer.Repository.UnitOfWork;
 using SocialMediaApp.Infrastructure.Context;
 using SocialMediaApp.Infrastructure.Repository.UnitOfWork;
-using SocialMediaApp.Application.Services.Validation;
 
 namespace SocialMediaApp.Application.IoC
 {
@@ -22,7 +22,7 @@ namespace SocialMediaApp.Application.IoC
         public static IServiceCollection RegisterServices(this IServiceCollection services)
         {
             //registration
-            //services.AddAutoMapper(typeof(Mapping));
+            services.AddAutoMapper(typeof(Mapping));
 
             //reseolve
             services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -38,7 +38,8 @@ namespace SocialMediaApp.Application.IoC
             services.AddTransient<IValidator<AddTweetDTO>, TweetValidation>();
 
             //"AddIdentity" sınıfı için Microsoft.AspNetCore.Identity paketi indirilir.
-            services.AddIdentity<AppUser, AppRole>(x => {
+            services.AddIdentity<AppUser, AppRole>(x =>
+            {
                 x.SignIn.RequireConfirmedAccount = false;
                 x.SignIn.RequireConfirmedEmail = false;
                 x.SignIn.RequireConfirmedPhoneNumber = false;
