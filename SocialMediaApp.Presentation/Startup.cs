@@ -71,10 +71,10 @@ namespace SocialMediaApp.Presentation
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                name: "profile",
-                pattern: "{profile}/{userName}",
-                defaults: new { controller = "Profile", action = "Detail" });
+                //endpoints.MapControllerRoute(
+                //name: "profile",
+                //pattern: "{profile}/{userName}",
+                //defaults: new { controller = "Profile", action = "Detail" });
 
                 endpoints.MapControllerRoute(
                     name: "default",

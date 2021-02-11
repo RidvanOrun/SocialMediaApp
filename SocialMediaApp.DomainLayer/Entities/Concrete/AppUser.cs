@@ -20,7 +20,7 @@ namespace SocialMediaApp.DomainLayer.Entities.Concrete
             Mentions = new List<Mention>();
         }
         public string Name { get; set; }
-        public string ImagePath { get; set; } = "/images/users/default.jp";
+        public string ImagePath { get; set; } = "/images/users/Default.jp";
 
 
         private DateTime _createDate = DateTime.Now;
