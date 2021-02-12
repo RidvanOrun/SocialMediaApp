@@ -18,7 +18,6 @@ namespace SocialMediaApp.Application.Model.VM
         public int MentionCount { get; set; }
         public int ShareCount { get; set; }
         public int LikeCount { get; set; }
-
         public bool isLiked { get; set; }
 
     }
