@@ -59,7 +59,7 @@ namespace SocialMediaApp.Presentation.Controllers
         {
             var findUser = await _appUserService.GetUserIdFromName(userName);
 
-            if (findUser > 0)
+            if (findUser >0)
             {
                 var followers = await _appUserService.UsersFollowers(findUser, pageındex);
                 return Json(followers, new JsonSerializerSettings());
