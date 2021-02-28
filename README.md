@@ -9,6 +9,7 @@ Bu proje "Domain-Driven-Design/DDD" temel alınarak yapılmştır. Proje içeris
 Eric Evans,Tackling Complexity in the Heart of Software adlı kitabında Domain Driven Design'dan bahsetmiş ve karmaşık sistemlerde oluşan problemlerin kaynağının, çoğunlukla domainlere bölünerek ve orada çözülmesi gerektiğini savunmuştur.  Bunun da ancak, business tarafı ile teknik tarafın ortak dili konuşmasından ve yaşanılan sorunların doğru bir şekilde anlaşılmasıyla birlikte projenin doğru modellenmesiyle gerçekleşebileceğini ortaya koymuştur. DDD'nin temel mantığı uygulama içerisinde mantıksal olarak birbiriyle en alakalı birimler aynı domainde tutulmasıdır. İş kuralları mantıksal olarak domainlere dağıtılır.
 
 
+
 1.Open Blank Solution which is name "SocialMediaApp".
 2.Open Class Library (.Core) Project which is name "SocialMediaApp.DomainLayer".
 	2.1. Open "Enums" Folder. 
@@ -368,8 +369,7 @@ Eric Evans,Tackling Complexity in the Heart of Software adlı kitabında Domain 
         {
             _userService = appUserService;
         }
-
-        #region Registration
+       
         public IActionResult Register()
         {
             ///?????
@@ -389,13 +389,9 @@ Eric Evans,Tackling Complexity in the Heart of Software adlı kitabında Domain 
                     ModelState.AddModelError(string.Empty, item.Description);                
             }
 
-            return View(registerDTO);
-        
-        }
-
-        #endregion
-
-        #region Login
+            return View(registerDTO);        
+        }    
+       
         //?? neden null oldu
         public IActionResult Login(string returnUrl = null)
         {
@@ -419,19 +415,14 @@ Eric Evans,Tackling Complexity in the Heart of Software adlı kitabında Domain 
               
             }
             return View();
-
         }
-
         private IActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl)) return Redirect(returnUrl);
             else return RedirectToAction(nameof(HomeController.Index), "Home");
 
-        }
+        }       
 
-        #endregion
-
-        #region Logout
         [HttpPost]
 
         public async Task<IActionResult> LogOut() 
@@ -440,11 +431,9 @@ Eric Evans,Tackling Complexity in the Heart of Software adlı kitabında Domain 
 
             return RedirectToAction(nameof(HomeController.Index), "Home");
         
-        }
+        }     
 
-        #endregion
-
-        #region EditProfile
+        
         public async Task<IActionResult> EditProfile(string userName)
         {
             if (userName == User.Identity.Name)
@@ -463,9 +452,7 @@ Eric Evans,Tackling Complexity in the Heart of Software adlı kitabında Domain 
         {
             await _userService.EditUser(model);
             return RedirectToAction(nameof(HomeController.Index), "home");           
-        }
-
-        #endregion
+        }     
       
     }
         5.5.2. FollowController.cs
@@ -487,3 +474,9 @@ Eric Evans,Tackling Complexity in the Heart of Software adlı kitabında Domain 
         5.6.2. FollowUser.cs
         5.6.3. ProfileSummary.cs
     P.S : Necessary procedures are done (Components Partial View etc.) for the Front End part. 
+        
+        
+
+
+
+
