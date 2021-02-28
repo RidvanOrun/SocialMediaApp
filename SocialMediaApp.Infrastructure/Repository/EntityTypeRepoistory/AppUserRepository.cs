@@ -10,9 +10,6 @@ namespace SocialMediaApp.Infrastructure.Repository.EntityTypeRepoistory
 {
     public class AppUserRepository:BaseRepository<AppUser>, IAppUserRepository
     {
-        public AppUserRepository(ApplicationDbContext applicationDbContext):base (applicationDbContext)
-        {
-
-        }
+        public AppUserRepository(ApplicationDbContext applicationDbContext):base (applicationDbContext){ }
     }
 }

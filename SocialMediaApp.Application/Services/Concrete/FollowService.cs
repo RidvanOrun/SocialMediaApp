@@ -28,7 +28,7 @@ namespace SocialMediaApp.Application.Services.Concrete
         /// <returns> Geri dönüş tipi yok sadece folowerkaydediyor.</returns>
         public async Task Follow(FollowDTO followDTO)
         {
-            var isFollowExist = await _unitOfwork.FollowRepository.FirstOrDefault(x => x.FollowerId == followDTO.FollowerId);
+            var isFollowExist = await _unitOfwork.FollowRepository.FirstOrDefault(x => x.FollowerId == followDTO.FollowerId && x.FollowingId==followDTO.FollowingId);
 
             if (isFollowExist==null)
             {

@@ -8,7 +8,7 @@ using System.Text;
 
 namespace SocialMediaApp.Infrastructure.Context
 {
-    public class ApplicationDbContext:IdentityDbContext<AppUser, AppRole,int> // ???
+    public class ApplicationDbContext:IdentityDbContext<AppUser, AppRole,int> 
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
