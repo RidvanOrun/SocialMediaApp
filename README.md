@@ -5,9 +5,11 @@ Bu proje "Domain-Driven-Design/DDD" temel alınarak yapılmştır. Proje ile ilg
 ## Projede kullanılan teknolojiler;
 Domain-Driven Design=> [*RidvanOrun/GitBook/DDD*](https://ridvanorun.gitbook.io/ddd/) 
 
-Asp.NetCore, Asynchronous Programming => [*RidvanOrun/GitBook/.NetCore*](https://ridvanorun.gitbook.io/asp-net-core/)
+Asp.NetCore, Asynchronous Programming, View Component => [*RidvanOrun/GitBook/.NetCore*](https://ridvanorun.gitbook.io/asp-net-core/)
 
 Generic Repository Design Pattern, Unit Of Work =>[*RidvanOrun/GitBook/DesingPattern*](https://ridvanorun.gitbook.io/desing-patterns/)
+
+DTO, VM, AutoMapper =>[*RidvanOrun/GitBook/DesingPattern*](https://ridvanorun.gitbook.io/object-operation/)
 
 
 
