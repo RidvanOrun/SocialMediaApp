@@ -1,6 +1,6 @@
 # SocialMediaApp
 
-Bu proje "Domain-Driven-Design/DDD" temel alınarak yapılmştır. Proje ile ilgili açıklamalara projemin [*ReadMe.txt*](https://github.com/RidvanOrun/SocialMediaApp/blob/master/ReadMe.txt)'sinden ulaşabilirisiniz.
+Bu proje "Domain-Driven-Design/DDD" temel alınarak yapılmştır. Proje ile ilgili açıklamalara projemin [*ReadMe.txt*](https://github.com/RidvanOrun/SocialMediaApp/blob/master/ReadMe.txt)'sinden ulaşabilirisiniz. Kullandığım teknolojiler ile ilgili yaptığım dökümantasyonları inceleyebilirsiniz.
 
 ## Projede kullanılan teknolojiler;
 Domain-Driven Design=> [*RidvanOrun/GitBook/DDD*](https://ridvanorun.gitbook.io/ddd/) 
