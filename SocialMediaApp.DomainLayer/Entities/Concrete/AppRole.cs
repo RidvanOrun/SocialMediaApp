@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace SocialMediaApp.DomainLayer.Entities.Concrete
-{
+{ 
     public class AppRole : IdentityRole<int>, IBaseEntity
     {
         private DateTime _createDate = DateTime.Now;

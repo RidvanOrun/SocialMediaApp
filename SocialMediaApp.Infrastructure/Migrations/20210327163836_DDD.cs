@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SocialMediaApp.Infrastructure.Migrations
 {
-    public partial class SocialMedia : Migration
+    public partial class DDD : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

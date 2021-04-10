@@ -10,8 +10,8 @@ using SocialMediaApp.Infrastructure.Context;
 namespace SocialMediaApp.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210210192739_SocialMedia")]
-    partial class SocialMedia
+    [Migration("20210327163836_DDD")]
+    partial class DDD
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
